@@ -27,7 +27,9 @@ if (! defined('PKWK_READONLY'))
 
 // PKWK_SAFE_MODE - Prohibits some unsafe(but compatible) functions 
 if (! defined('PKWK_SAFE_MODE'))
-	define('PKWK_SAFE_MODE', 0);
+	define('PKWK_SAFE_MODE', 1);
+
+define('PKWKEXP_DISABLE_MULTILINE_PLUGIN_HACK', 0);
 
 // PKWK_DISABLE_INLINE_IMAGE_FROM_URI - Disallow using inline-image-tag for URIs
 //   Inline-image-tag for URIs may allow leakage of Wiki readers' information
@@ -250,26 +252,28 @@ $read_auth = 0;
 
 $read_auth_pages = array(
 	// Regex		   Username
-	'#HogeHoge#'		=> 'hoge',
-	'#(NETABARE|NetaBare)#'	=> 'foo,bar,hoge',
+        //'#HogeHoge#'		=> 'hoge',
+        //'#(NETABARE|NetaBare)#'	=> 'foo,bar,hoge',
+        '/.*/'	=> 'foo,bar,hoge',
 );
 
 /////////////////////////////////////////////////
 // Edit auth (0:Disable, 1:Enable)
-$edit_auth = 0;
+$edit_auth = 1;
 
 $edit_auth_pages = array(
 	// Regex		   Username
-	'#BarDiary#'		=> 'bar',
-	'#HogeHoge#'		=> 'hoge',
-	'#(NETABARE|NetaBare)#'	=> 'foo,bar,hoge',
+	//'#BarDiary#'		=> 'bar',
+	//'#HogeHoge#'		=> 'hoge',
+	//'#(NETABARE|NetaBare)#'	=> 'foo,bar,hoge',
+	'/.*/'	=> 'foo,bar,hoge',
 );
 
 /////////////////////////////////////////////////
 // Search auth
 // 0: Disabled (Search read-prohibited page contents)
 // 1: Enabled  (Search only permitted pages for the user)
-$search_auth = 0;
+$search_auth = 1;
 
 /////////////////////////////////////////////////
 // $whatsnew: Max number of RecentChanges
